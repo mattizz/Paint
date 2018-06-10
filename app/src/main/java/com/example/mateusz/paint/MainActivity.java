@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private AreaPainting areaPainting;
 
     public static int paintColor = Color.RED;
-    public static boolean clear = true;
+    public static boolean clear = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clear = true;
             }
         });
     }

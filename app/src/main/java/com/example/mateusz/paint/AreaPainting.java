@@ -22,6 +22,7 @@ public class AreaPainting extends SurfaceView implements SurfaceHolder.Callback,
     private float positionY;
     private float earlierPositionX;
     private float earlierPositionY;
+    private boolean clearScreen;
 
     public AreaPainting(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -107,8 +108,10 @@ public class AreaPainting extends SurfaceView implements SurfaceHolder.Callback,
                     canvas = container.lockCanvas(null);
                     synchronized (lock) {
                         if (threadPaintWork) {
-                            if (MainActivity.clear == true) {
-                                canvas.drawARGB(255, 255, 255, 255);
+                            setClearScreen(MainActivity.clear);
+                            boolean x = isClearScreen();
+                            if (isClearScreen()) {
+                                myCanvas.drawARGB(255, 255, 255, 255);
                                 MainActivity.setClear();
                             }
                             canvas.drawBitmap(bitmap, 0, 0, null);
@@ -127,4 +130,14 @@ public class AreaPainting extends SurfaceView implements SurfaceHolder.Callback,
             }
         }
     }
+
+    public boolean isClearScreen() {
+        return clearScreen;
+    }
+
+    public void setClearScreen(boolean clearScreen) {
+        this.clearScreen = clearScreen;
+    }
+
+
 }
